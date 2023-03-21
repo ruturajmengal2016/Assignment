@@ -24,14 +24,14 @@ function Header() {
       >
         {show? <span>&#x2716;</span>:<span>&#9776;</span>}
       </button>
-      {show ? <Mobile /> : " "}
+      {show && <Mobile />}
     </div>
   );
 }
 
 function Mobile() {
   return (
-    <div className="flex justify-center bg-slate-500 mt-[2rem] text-white">
+    <div className="flex justify-center bg-slate-500 mt-[2rem] text-white sm:hidden">
       <nav>
         <ul className="grid grid-cols-1">
           <li>Home</li>
