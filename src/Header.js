@@ -1,13 +1,50 @@
-import React from 'react'
+import React, { useState } from "react";
 
 function Header() {
+  const [show, setShow] = useState(false);
   return (
-    <div className='self-center flex '>
-        <input type="text" className='peer block min-h-min w-full rounded border-0 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"' placeholder='Search...' />
-        &nbsp;
-        <button className='text-[0.5rem] w-fit h-fit p-1 self-center border-red-500 text-blue-50 bg-blue-700 rounded-lg'>Search</button>
+    <div className="w-[100%] p-2">
+      <img src="https://miro.medium.com/v2/resize:fit:1400/1*dLaDL-lSN0iprzmOpmM7zQ.png" alt="" className="sm:hidden inline w-10 h-5" />
+      <nav className="hidden sm:flex justify-between">
+        <ul className="flex gap-2">
+          <li>Home</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
+        <ul className="flex gap-2">
+          <li>Services</li>
+          <li>products</li>
+        </ul>
+      </nav>
+      <button
+        className="flex float-right sm:hidden"
+        onClick={() => {
+          setShow(!show);
+        }}
+      >
+        {show? <span>&#x2716;</span>:<span>&#9776;</span>}
+      </button>
+      {show ? <Mobile /> : " "}
     </div>
-  )
+  );
 }
 
-export default Header
+function Mobile() {
+  return (
+    <div className="flex justify-center bg-slate-500 mt-[2rem] text-white">
+      <nav>
+        <ul className="grid grid-cols-1">
+          <li>Home</li>
+          <li>About</li>
+          <li>Contact</li>
+          <li>Services</li>
+          <li>products</li>
+        </ul>
+      </nav>
+    </div>
+  );
+}
+
+
+
+export default Header;
