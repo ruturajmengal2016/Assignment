@@ -2,6 +2,7 @@ import React from "react";
 
 function Hero() {
   return (
+<<<<<<< HEAD
     <div className="sm_short:flex sm_short:justify-evenly sm_short:text-[0.5rem] text-justify max-sm:flex-col text-[0.499999999rem] h-screen">
       <img
         src="https://thumbs.dreamstime.com/b/online-learning-e-learning-online-education-distance-learning-education-online-course-student-studying-computer-illustration-83348348.jpg"
@@ -39,6 +40,25 @@ function Hero() {
         cupiditate fuga impedit natus veniam eaque dolore nostrum facilis
         recusandae maiores suscipit temporibus quae, modi itaque. 
       </p>
+=======
+    <div className="sm:flex sm:justify-between">
+      <img
+        src="https://thevaluableinfo.com/wp-content/uploads/2023/02/lernreact-img.jpg"
+        alt=""
+        className="w-[390px] max-w-[640px] p-2"
+      />
+      <div>
+        <p className="text-justify p-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt enim
+          quos tempore pariatur? Laudantium fugit quibusdam quis iste suscipit
+          dolores magnam voluptatibus id, molestiae, omnis modi, nam saepe!
+          Dolorum, excepturi? Lorem ipsum dolor, sit amet consectetur
+          adipisicing elit. Necessitatibus tenetur velit libero, recusandae
+          nesciunt expedita iste blanditiis. Natus itaque corrupti impedit at
+          doloribus dolores quas! Quasi consequuntur consequatur nemo saepe!
+        </p>
+      </div>
+>>>>>>> master
     </div>
   );
 }
