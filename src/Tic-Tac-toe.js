@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 function TicTactoe() {
   const [turn, setturn] = useState("X");
-  const [cells, setcells] = useState(Array(9).fill("")); 
-  const [winner, setWinner] = useState(); 
+  const [cells, setcells] = useState(Array(9).fill(""));
+  const [winner, setWinner] = useState();
 
   const checkWinners = (squares) => {
     let combos = {
@@ -21,15 +21,21 @@ function TicTactoe() {
         [0, 4, 8],
         [2, 4, 6],
       ],
-    }
-    for(let combo in combos){
-        combos[combo].forEach(pattern => {
-            if(squares[pattern[0]] === '' || squares[pattern[1]] === '' || squares[pattern[2]] === '' ){
-
-            }else if (squares[pattern[0]] === squares[pattern[1]] && squares[pattern[1]] === squares[pattern[2]] ) {
-                setWinner(squares[pattern[0]])
-            }
-        });
+    };
+    for (let combo in combos) {
+      combos[combo].forEach((pattern) => {
+        if (
+          squares[pattern[0]] === "" ||
+          squares[pattern[1]] === "" ||
+          squares[pattern[2]] === ""
+        ) {
+        } else if (
+          squares[pattern[0]] === squares[pattern[1]] &&
+          squares[pattern[1]] === squares[pattern[2]]
+        ) {
+          setWinner(squares[pattern[0]]);
+        }
+      });
     }
   };
   const Cell = ({ num }) => {
@@ -57,7 +63,7 @@ function TicTactoe() {
       squares[num] = "O";
       setturn("X");
     }
-    checkWinners(squares)
+    checkWinners(squares);
     setcells(squares);
   };
   return (
@@ -82,10 +88,12 @@ function TicTactoe() {
           </tr>
         </tbody>
       </table>
-      {winner && (<>
-        <p>{winner} is the winner!</p>
-        <button>Play Again</button>
-      </>)}
+      {winner && (
+        <>
+          <p>{winner} is the winner!</p>
+          <button>Play Again</button>
+        </>
+      )}
     </div>
   );
 }

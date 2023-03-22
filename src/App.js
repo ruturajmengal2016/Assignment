@@ -20,11 +20,18 @@ function App() {
   ];
   return (
     <div className="h-screen bg-orange-300 flex justify-center items-center">
-      <BsFillArrowLeftCircleFill size={30} fill="red" className="translate-x-3" />
+      <BsFillArrowLeftCircleFill
+        size={30}
+        fill="red"
+        className="translate-x-3"
+      />
       <div className="w-[80%] bg-blue-200 h-[15rem] flex items-center gap-4 box-border overflow-x-auto pl-5 pr-5">
         {data.map((ele, ind) => {
           return (
-            <div className="h-[12rem] min-w-[20rem] bg-white flex flex-col justify-center items-center rounded-lg shadow-md shadow-gray-600 text-[1rem] font-bold" key={ind}>
+            <div
+              className="h-[12rem] min-w-[20rem] bg-white flex flex-col justify-center items-center rounded-lg shadow-md shadow-gray-600 text-[1rem] font-bold"
+              key={ind}
+            >
               <img
                 src={ele.image}
                 alt=""
@@ -37,7 +44,11 @@ function App() {
           );
         })}
       </div>
-      <BsFillArrowRightCircleFill size={30} fill="red" className="-translate-x-3" />
+      <BsFillArrowRightCircleFill
+        size={30}
+        fill="red"
+        className="-translate-x-3"
+      />
     </div>
   );
 }
