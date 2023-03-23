@@ -25,7 +25,7 @@ function App() {
         fill="red"
         className="translate-x-3"
       />
-      <div className="w-[80%] bg-blue-200 h-[15rem] flex flex-wrap items-center gap-4 box-border overflow-x-auto pl-5 pr-5">
+      <div className="w-[80%] bg-blue-200 h-[15rem] flex items-center gap-4 box-border overflow-x-auto pl-5 pr-5">
         {data.map((ele, ind) => {
           return (
             <div
