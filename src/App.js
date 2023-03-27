@@ -13,9 +13,9 @@ import About from "./About";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route to="/" element={<Root />}>
-        <Route index element={<Home />} />
-        <Route to="/about" element={<About />} />
+      <Route path="/" element={<Root />}>
+        <Route path="/home" index element={<Home />} />
+        <Route path="/about" element={<About />} />
       </Route>
     )
   );
