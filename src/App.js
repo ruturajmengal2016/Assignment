@@ -1,6 +1,7 @@
 import React from "react";
-import { createRoutesFromElements, Route } from "react-router";
 import {
+  createRoutesFromElements,
+  Route,
   createBrowserRouter,
   Link,
   RouterProvider,
