@@ -1,5 +1,5 @@
 import React from "react";
-import img1 from "./mark.jpg";
+import img1 from "./profile.jpg";
 import { useNavigate } from "react-router-dom";
 function Login() {
     const navigate = useNavigate()

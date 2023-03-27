@@ -1,5 +1,5 @@
 import React from "react";
-import img1 from "./mark.jpg";
+import img1 from "./profile.jpg";
 function About() {
   return (
     <div className="h-screen flex items-start flex-col p-5 gap-16">
@@ -19,14 +19,12 @@ function About() {
           <span className="text-blue-600">Location:India</span>
         </div>
         <div className="self-start flex flex-col justify-between p-3 text-justify h-[19rem]">
-          <p>
-            Mark Zuckerberg, Mark is also the co-founder and co-CEO of the Chan
-            Zuckerberg Initiative (CZI) with his wife Priscilla. They founded
-            CZI in 2015 to help solve some of society’s toughest challenges —
-            from eradicating disease and improving education, to addressing the
-            needs of our local communities. Through collaboration, providing
-            resources and building technology, CZI’s mission is to help build a
-            more inclusive, just and healthy future for everyone.
+          <p className="w-[80%]">
+            My name is Emile. I’m from Nashik where I finished my schooling last
+            year from Bhujbal. Is there anyone here from my city? OK, few. I
+            like watching movies, at least once a month. I play basketball on
+            weekends and chess whenever I get time. I’m into reading thriller
+            novels as well, Dan Brown being my favorite novelist.
           </p>
           <div className="flex gap-3">
             <div className="h-[8rem] w-[20rem] bg-blue-400 box-border p-1">
