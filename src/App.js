@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
+import Login from "./Login";
+import Register from "./Register";
 
 function App() {
   const router = createBrowserRouter(
@@ -16,6 +18,8 @@ function App() {
       <Route path="/" element={<Root />}>
         <Route path="/" element={<Home />} /> 
         <Route path="/about" element={<About />} /> 
+        <Route path="/login" element={<Login />} /> 
+        <Route path="/register" element={<Register />} /> 
       </Route>
     )
   );
@@ -29,9 +33,10 @@ function App() {
 const Root = () => {
   return (
     <>
-      <div>
+      <div className="w-screen bg-blue-500 flex justify-end gap-12 box-border pr-[6rem] h-[3rem] items-center">
         <Link to="/">Home</Link> 
-        <Link to="/about">About</Link> 
+        <Link to="/about">About Us</Link> 
+        <Link to="/login">log In</Link> 
       </div>
       <div>
         <Outlet />
