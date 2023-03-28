@@ -16,10 +16,10 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route path="/" element={<Home />} /> 
-        <Route path="/about" element={<About />} /> 
-        <Route path="/login" element={<Login />} /> 
-        <Route path="/register" element={<Register />} /> 
+        <Route index path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Route>
     )
   );
@@ -34,9 +34,9 @@ const Root = () => {
   return (
     <>
       <div className="w-screen bg-blue-500 flex justify-end gap-12 box-border pr-[6rem] h-[3rem] items-center">
-        <Link to="/">Home</Link> 
-        <Link to="/about">About Us</Link> 
-        <Link to="/login">log In</Link> 
+        <Link to="/">Home</Link>
+        <Link to="/about">About Us</Link>
+        <Link to="/login">log In</Link>
       </div>
       <div>
         <Outlet />
