@@ -12,7 +12,7 @@ function About() {
         <div className="w-[25rem]">
           <img
             src={img1}
-            alt=""
+            alt="error"
             className="h-[12rem] w-[12rem] border-2 border-black rounded-[1rem]"
           />
           <span className="text-blue-600">Age:22</span> <br />
