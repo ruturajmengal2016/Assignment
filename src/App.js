@@ -39,7 +39,7 @@ const Root = () => {
         <Link to="/login">log In</Link>
       </div>
       <div>
-        <Outlet />
+        <Outlet /> 
       </div>
     </>
   );
