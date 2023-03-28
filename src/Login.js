@@ -1,8 +1,8 @@
 import React from "react";
-import img1 from "./profile.jpg";
+import img1 from "./Images/profile.jpg";
 import { useNavigate } from "react-router-dom";
 function Login() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="flex justify-center h-screen items-center flex-col bg-red-400">
       <img
@@ -27,9 +27,14 @@ function Login() {
           <div className="self-center flex justify-between w-[60%]">
             <div>
               <p>Don't have Account</p>
-              <button className="underline decoration-2" onClick={()=>{
-                navigate("/register")
-              }}>Register</button>
+              <button
+                className="underline decoration-2"
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                Register
+              </button>
             </div>
             <div>
               <button className="border-[1px] border-black box-border p-1 w-[8rem] bg-blue-600 rounded-md text-white">

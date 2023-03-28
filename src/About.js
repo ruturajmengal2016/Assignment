@@ -1,5 +1,5 @@
 import React from "react";
-import img1 from "./profile.jpg";
+import img1 from './Images/profile.jpg'
 function About() {
   return (
     <div className="h-screen flex items-start flex-col p-5 gap-16">
