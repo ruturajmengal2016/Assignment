@@ -16,8 +16,8 @@ import Register from "./Pages/Register";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<Root />}>
-        <Route index path="/home" element={<Home />} />
+      <Route path="/" element={<Root />}>
+        <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -36,7 +36,7 @@ const Root = () => {
   return (
     <>
       <div>
-        <Link to="/home">Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>
