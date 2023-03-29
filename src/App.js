@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 function App() {
   const [show, setshow] = useState(false);
   const [qIndex, setIndex] = useState(0);
   const [score, setscore] = useState(0);
+  const input = useRef();
   const Question = [
     {
       question:
@@ -101,16 +102,17 @@ function App() {
       ],
     },
   ];
-  function handleClick(value) {
-    if (value === true) {
+  function handleNext() {
+    if (input.current) {
       setscore(score + 2);
     }
     const next = qIndex + 1;
     if (next < Question.length) {
-      setIndex(next);
+      setIndex(qIndex + 1);
     } else {
       setshow(true);
     }
+    input.current = null;
   }
   return (
     <div className="flex justify-center items-center h-screen">
@@ -133,17 +135,22 @@ function App() {
               <div className="flex flex-col justify-start box-border w-[100%] gap-2 items-center">
                 {Question[qIndex].options.map((element, index) => {
                   return (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        handleClick(element.correct);
-                      }}
-                      className="hover:text-green-400 bg-gray-300 border-2 min-w-[10rem] max-w-[20rem] rounded-xl"
-                    >
+                    <div>
+                      <input
+                        type="radio"
+                        name={Question[qIndex].question}
+                        value={Question[qIndex].options[index].correct}
+                        key={index}
+                        ref={input}
+                        onChange={(event) => {
+                          input.current = event.target.value;
+                        }}
+                      />
                       {element.Ans}
-                    </button>
+                    </div>
                   );
                 })}
+                <button onClick={handleNext} className="p-1 border-2 border-red-600 bg-red-600 w-[6rem] rounded-md">{qIndex === 9 ? "Submit":"Next"}</button>
               </div>
             </div>
           </>
