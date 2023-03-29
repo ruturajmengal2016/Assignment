@@ -12,7 +12,6 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-import Styles from "./Styles/App.module.scss";
 
 function App() {
   const router = createBrowserRouter(
@@ -27,16 +26,16 @@ function App() {
     )
   );
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <div>
+      <RouterProvider router={router} /> 
+    </div>
   );
 }
 
 const Root = () => {
   return (
     <>
-      <div className={Styles.navigation}>
+      <div>
         <Link to="/home">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/login">Login</Link>
