@@ -1,8 +1,9 @@
 import React from 'react'
+import Styles from '../Styles/About.module.scss'
 
 function About() {
   return (
-    <div>About</div>
+    <div className={Styles.root}>About</div>
   )
 }
 

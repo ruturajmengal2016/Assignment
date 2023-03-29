@@ -1,8 +1,9 @@
 import React from 'react'
+import Styles from '../Styles/Login.module.scss' 
 
 function Login() {
   return (
-    <div>Login</div>
+    <div className={Styles.root}>Login</div>
   )
 }
 

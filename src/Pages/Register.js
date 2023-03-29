@@ -1,8 +1,8 @@
 import React from 'react'
-
+import Styles from '../Styles/Register.module.scss'
 function Register() {
   return (
-    <div>Register</div>
+    <div className={Styles.root}>Register</div>
   )
 }
 

@@ -43,7 +43,7 @@ const Root = () => {
         <Link to="/register">Register</Link>
         <Link to="/guess">Guess</Link>
       </div>
-      <div>
+      <div className={Styles.outlet}>
         <Outlet />
       </div>
     </>
