@@ -12,6 +12,7 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import Styles from "./Styles/App.module.scss";
 
 function App() {
   const router = createBrowserRouter(
@@ -35,7 +36,7 @@ function App() {
 const Root = () => {
   return (
     <>
-      <div>
+      <div className={Styles.navigation}>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/login">Login</Link>
