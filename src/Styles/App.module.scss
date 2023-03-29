@@ -1,7 +1,23 @@
-
 .root{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+
+    .first_div{
+        display: flex;
+        gap: 0.5rem;
+
+        button{
+            padding: 0.2rem;
+            box-sizing: border-box;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        input::placeholder{
+            color: rgb(236, 57, 57);
+            transform: translateX(0.2rem);
+
+        }
+    }
 }
