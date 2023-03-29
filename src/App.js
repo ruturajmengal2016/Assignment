@@ -150,7 +150,12 @@ function App() {
                     </div>
                   );
                 })}
-                <button onClick={handleNext} className="p-1 border-2 border-red-600 bg-red-600 w-[6rem] rounded-md">{qIndex === 9 ? "Submit":"Next"}</button>
+                <button
+                  onClick={handleNext}
+                  className="p-1 border-2 border-red-600 bg-red-600 w-[6rem] rounded-md"
+                >
+                  {qIndex === 9 ? "Submit" : "Next"}
+                </button>
               </div>
             </div>
           </>
