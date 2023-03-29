@@ -16,7 +16,7 @@ import Register from "./Pages/Register";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Root />}>
+      <Route element={<Root />}>
         <Route index path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
