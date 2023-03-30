@@ -10,18 +10,11 @@ function First() {
     const image = await response.json();
     setCount(image.message);
   };
-  console.log(count);
   return (
     <div className={Styles.root}>
       <div className={Styles.container}>
         <div className={Styles.left}>
-          {count ? (
-            <>
-              <img src={count} alt="" />
-            </>
-          ) : (
-            <div>Loading....</div>
-          )}
+          <img src={count} alt="" />
         </div>
         <div className={Styles.right}>
           <button onClick={fun}>Click</button>
