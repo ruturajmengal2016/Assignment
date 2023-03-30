@@ -7,22 +7,16 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
-import Guess from "./Guess";
-import Home from "./Pages/Home";
-import About from "./Pages/About";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
+import First from "./Pages/First";
+import Second from "./Pages/Second";
 import Styles from "./Styles/App.module.scss";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route index element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/guess" element={<Guess />} />
+        <Route index element={<First />} />
+        <Route path="/second" element={<Second />} />
       </Route>
     )
   );
@@ -37,11 +31,8 @@ const Root = () => {
   return (
     <>
       <div className={Styles.navigation}>
-        <Link to="/" className={Styles.link}>Home</Link>
-        <Link to="/about" className={Styles.link}>About</Link>
-        <Link to="/login" className={Styles.link}>Login</Link>
-        <Link to="/register" className={Styles.link}>Register</Link>
-        <Link to="/guess" className={Styles.link}>Guess</Link>
+        <Link to="/" className={Styles.link}>First</Link>
+        <Link to="/second" className={Styles.link}>Second</Link>
       </div>
       <div className={Styles.outlet}>
         <Outlet />
