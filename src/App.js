@@ -37,11 +37,11 @@ const Root = () => {
   return (
     <>
       <div className={Styles.navigation}>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
-        <Link to="/guess">Guess</Link>
+        <Link to="/" className={Styles.link}>Home</Link>
+        <Link to="/about" className={Styles.link}>About</Link>
+        <Link to="/login" className={Styles.link}>Login</Link>
+        <Link to="/register" className={Styles.link}>Register</Link>
+        <Link to="/guess" className={Styles.link}>Guess</Link>
       </div>
       <div className={Styles.outlet}>
         <Outlet />

@@ -6,10 +6,13 @@
   box-sizing: border-box;
   padding: 1rem;
 
-  Link{
+  .link{
     text-decoration: none;
-    font-size: 2rem;
-    color: yellow;
+    font-size: 1.5rem;
+
+    &:hover{
+      color: blue;
+    }
   }
 }
 

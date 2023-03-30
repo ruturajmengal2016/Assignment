@@ -1,10 +1,16 @@
-import React from 'react'
-import Styles from '../Styles/Login.module.scss' 
+import React from "react";
+import Styles from "../Styles/Login.module.scss";
 
 function Login() {
   return (
-    <div className={Styles.root}>Login</div>
-  )
+    <div className={Styles.root}>
+      <form action="">
+        <input type="email" placeholder="Email..." />
+        <input type="password" placeholder="Password..." />
+        <button>Login</button>
+      </form>
+    </div>
+  );
 }
 
-export default Login
+export default Login;
