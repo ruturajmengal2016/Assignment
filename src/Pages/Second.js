@@ -20,4 +20,4 @@ function Second() {
     </div>
   );
 }
-export default Second
+export default Second;
