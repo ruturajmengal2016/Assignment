@@ -14,7 +14,7 @@ function Second() {
     <div className={Styles.root}>
       <div className={Styles.container}>
         <div className={Styles.left}>
-          <img src={count} alt="" />
+          <img src={count} alt="error" />
         </div>
       </div>
     </div>
