@@ -19,7 +19,7 @@ function First() {
           setColor(!_color);
         }}
       >
-        Click
+        Change color
       </button>
     </div>
   );

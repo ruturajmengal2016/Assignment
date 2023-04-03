@@ -5,5 +5,4 @@ const color = atom({
   default: true,
 });
 
-
-export { color};
+export { color };
