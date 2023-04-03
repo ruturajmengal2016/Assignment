@@ -5,9 +5,5 @@ const color = atom({
   default: true,
 });
 
-const todo = atom({
-  key: "todo",
-  default: [],
-});
 
-export { color, todo };
+export { color};

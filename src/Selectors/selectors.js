@@ -1,12 +1,11 @@
 import { selector } from "recoil";
-import { todo } from "../Atoms/atoms";
+import { color } from "../Atoms/atoms";
 
-const remaining = selector({
+const colors = selector({
   key: "todolist",
   get: ({ get }) => {
-    const len = get(todo);
-    return len.length;
+   return get(color)
   },
 });
 
-export {remaining}
+export {colors}
