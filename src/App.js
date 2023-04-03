@@ -9,14 +9,15 @@ import {
 } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import Styles from "./Styles/App.module.scss";
-import Home from "./Pages/Home";
+import First from "./Pages/First";
+import Second from "./Pages/Second";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route index element={<Home />} />
-        <Route path="/second" element="" />
+        <Route index element={<First />} />
+        <Route path="/second" element={<Second />} />
       </Route>
     )
   );
@@ -32,7 +33,7 @@ const Root = () => {
     <>
       <div className={Styles.navigation}>
         <Link to="/" className={Styles.link}>
-          Home
+          First
         </Link>
         <Link to="/second" className={Styles.link}>
           Second

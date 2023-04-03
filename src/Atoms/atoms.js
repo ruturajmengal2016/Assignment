@@ -1,8 +1,13 @@
-import {atom} from 'recoil'
+import { atom } from "recoil";
 
-const count = atom({
-    key:"count",
-    default:0
-})
+const color = atom({
+  key: "color",
+  default: true,
+});
 
-export {count}
+const todo = atom({
+  key: "todo",
+  default: [],
+});
+
+export { color, todo };

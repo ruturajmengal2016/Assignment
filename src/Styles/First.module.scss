@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+
+  .red {
+    font-size: 2rem;
+    color: red;
+  }
+  .blue {
+    font-size: 2rem;
+    color: blue;
+  }
+
+  button {
+    padding: 0.3rem;
+  }
+}
