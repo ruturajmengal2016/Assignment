@@ -1,3 +1,6 @@
+$blue_color: blue;
+$red_color: red;
+
 .root {
   display: flex;
   gap: 5px;
@@ -11,11 +14,11 @@
 
   .red {
     font-size: 2rem;
-    color: red;
+    color: $red_color;
   }
   .blue {
     font-size: 2rem;
-    color: blue;
+    color: $blue_color;
   }
 
   button {
