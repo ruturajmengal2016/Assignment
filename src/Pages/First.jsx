@@ -10,7 +10,7 @@ function First() {
   console.log(value);
   return (
     <div className={Styles.root}>
-      <span className={Styles.text}>The color is {value ? "red" : "blue"}</span>
+      <span className={Styles.text}>The color is {value}</span>
       <span className={_color ? Styles.red : Styles.blue}>
         Hi, I change the color on Click button
       </span>

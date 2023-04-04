@@ -4,7 +4,7 @@ import { color } from "../Atoms/atoms";
 const colors = selector({
   key: "todolist",
   get: ({ get }) => {
-   return get(color)
+   return get(color) ? "red" : "blue"
   },
 });
 
