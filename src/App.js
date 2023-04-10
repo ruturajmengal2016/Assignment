@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Styles from "./Styles/App.module.scss";
 export default function App() {
-  const [store, setStore] = useState(Math.floor(Math.random() * 10));
+  const [store, setStore] = useState(Math.floor(Math.random() * 100));
   const [array, setArray] = useState([]);
   const randomNum = () => {
     return Math.floor(Math.random() * 100);
