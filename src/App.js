@@ -1,45 +1,56 @@
-import { useState } from "react";
 import Styles from "./Styles/App.module.scss";
+import { useState } from "react";
 export default function App() {
-  const [store, setStore] = useState(Math.floor(Math.random() * 10));
+  const [data, setData] = useState({ time: "", event: "" });
   const [array, setArray] = useState([]);
-  const randomNum = () => {
-    return Math.floor(Math.random() * 100);
-  };
+  console.log(array);
   return (
     <div className={Styles.root}>
-      <button
-        onClick={() => {
-          setStore(randomNum);
-          setArray([...array, store]);
-        }}
-        style={{ display: "block" }}
-      >
-        Generate
-      </button>
-
-      <table>
-        <thead>
-          <th>Random Numbers</th>
-        </thead>
-        <tbody>
-          {array.map((ele, ind) => {
-            return (
-              <tr key={ind}>
-                <td>{ele}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <button
-        onClick={() => {
-          setArray([]);
-        }}
-        style={{ display: "block" }}
-      >
-        Clear
-      </button>
+      <div className={Styles.first}>
+        <h1
+          onMouseOver={(e) => {
+            e.preventDefault();
+            setData({
+              ...data,
+              time: new Date().toLocaleTimeString(),
+              event: e.type
+            });
+            setArray([...array, data]);
+          }}
+          onMouseLeave={(e) => {
+            e.preventDefault();
+            setData({
+              ...data,
+              time: new Date().toLocaleTimeString(),
+              event: e.type
+            });
+            setArray([...array, data]);
+          }}
+        >
+          Heading first
+        </h1>
+        <h1>Heading Second</h1>
+      </div>
+      <div className={Styles.second}>
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Event</th>
+            </tr>
+          </thead>
+          <tbody>
+            {array.slice(1, array.length - 1).map((ele, ind) => {
+              return (
+                <tr key={ind}>
+                  <td>{ele.time}</td>
+                  <td>{ele.event}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

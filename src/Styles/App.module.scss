@@ -1,23 +1,28 @@
-.root{
+.root {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  .first {
     display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
     gap: 1rem;
+  }
+  .second {
+    table {
+      border: 1px solid black;
+      width: 20rem;
 
-    table{
-        border: 1px solid black;
-
-        td{
-            border: 1px red solid;
-        }
+      th {
+        text-align: center;
+        border: 1px solid blue;
+      }
+      td {
+        text-align: center;
+        border: 1px solid red;
+      }
     }
-
-    button{
-        box-sizing: border-box;
-        padding: 0.3rem;
-        font-weight: bold;
-        position: relative;
-        top: 0;
-    }
+  }
 }
