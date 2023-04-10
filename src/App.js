@@ -1,56 +1,29 @@
-import Styles from "./Styles/App.module.scss";
-import { useState } from "react";
+import Styles from './Styles/App.module.scss'
+import { useState, useRef } from "react";
 export default function App() {
-  const [data, setData] = useState({ time: "", event: "" });
-  const [array, setArray] = useState([]);
-  console.log(array);
+  const [count, setCount] = useState(0);
+  const h1 = useRef(null);
+  const greet = [
+    "Good Morning",
+    "Good Afternoon",
+    "Good Evening",
+    "Good Night"
+  ];
   return (
     <div className={Styles.root}>
-      <div className={Styles.first}>
-        <h1
-          onMouseOver={(e) => {
-            e.preventDefault();
-            setData({
-              ...data,
-              time: new Date().toLocaleTimeString(),
-              event: e.type
-            });
-            setArray([...array, data]);
-          }}
-          onMouseLeave={(e) => {
-            e.preventDefault();
-            setData({
-              ...data,
-              time: new Date().toLocaleTimeString(),
-              event: e.type
-            });
-            setArray([...array, data]);
-          }}
-        >
-          Heading first
-        </h1>
-        <h1>Heading Second</h1>
-      </div>
-      <div className={Styles.second}>
-        <table>
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Event</th>
-            </tr>
-          </thead>
-          <tbody>
-            {array.slice(1, array.length - 1).map((ele, ind) => {
-              return (
-                <tr key={ind}>
-                  <td>{ele.time}</td>
-                  <td>{ele.event}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <h1 ref={h1}>Hello Everyone</h1>
+      <button
+        onClick={() => {
+          if (count < greet.length) {
+            h1.current.innerText = greet[count];
+            setCount(count + 1);
+          } else {
+            setCount(0);
+          }
+        }}
+      >
+        Change Greet
+      </button>
     </div>
   );
 }

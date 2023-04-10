@@ -6,23 +6,8 @@
   align-items: center;
   gap: 1rem;
 
-  .first {
-    display: flex;
-    gap: 1rem;
-  }
-  .second {
-    table {
-      border: 1px solid black;
-      width: 20rem;
-
-      th {
-        text-align: center;
-        border: 1px solid blue;
-      }
-      td {
-        text-align: center;
-        border: 1px solid red;
-      }
-    }
+  button{
+    box-sizing: border-box;
+    padding: 0.2rem;
   }
 }
