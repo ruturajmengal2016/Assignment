@@ -1,44 +1,45 @@
-import React from "react";
-import {
-  createBrowserRouter,
-  Link,
-  createRoutesFromElements,
-  Route,
-  Outlet,
-  RouterProvider,
-} from "react-router-dom";
-import { RecoilRoot } from "recoil";
+import { useState } from "react";
 import Styles from "./Styles/App.module.scss";
-import First from "./Pages/First";
-
-function App() {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<Root />}>
-        <Route index element={<First />} />
-      </Route>
-    )
-  );
+export default function App() {
+  const [store, setStore] = useState(Math.floor(Math.random() * 10));
+  const [array, setArray] = useState([]);
+  const randomNum = () => {
+    return Math.floor(Math.random() * 100);
+  };
   return (
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
+    <div className={Styles.root}>
+      <button
+        onClick={() => {
+          setStore(randomNum);
+          setArray([...array, store]);
+        }}
+        style={{ display: "block" }}
+      >
+        Generate
+      </button>
+
+      <table>
+        <thead>
+          <th>Random Numbers</th>
+        </thead>
+        <tbody>
+          {array.map((ele, ind) => {
+            return (
+              <tr key={ind}>
+                <td>{ele}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <button
+        onClick={() => {
+          setArray([]);
+        }}
+        style={{ display: "block" }}
+      >
+        Clear
+      </button>
+    </div>
   );
 }
-
-const Root = () => {
-  return (
-    <>
-      <div className={Styles.navigation}>
-        <Link to="/" className={Styles.link}>
-          First
-        </Link>
-      </div>
-      <div className={Styles.outlet}>
-        <Outlet />
-      </div>
-    </>
-  );
-};
-
-export default App;
