@@ -1,45 +1,57 @@
-import { useState } from "react";
-import Styles from "./Styles/App.module.scss";
+import Styles from './Styles/App.module.scss'
+import axios from "axios";
+import { useEffect, useState } from "react";
 export default function App() {
-  const [store, setStore] = useState(Math.floor(Math.random() * 100));
-  const [array, setArray] = useState([]);
-  const randomNum = () => {
-    return Math.floor(Math.random() * 100);
+  const [data, setData] = useState([]);
+  function handleDelete(ind) {
+    const newData = data.filter((ele, index) => {
+      return ind !== index;
+    });
+    setData(newData);
+  }
+  const fetchData = async () => {
+    try {
+      const users = await axios.get(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      setData(users.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div className={Styles.root}>
-      <button
-        onClick={() => {
-          setStore(randomNum);
-          setArray([...array, store]);
-        }}
-        style={{ display: "block" }}
-      >
-        Generate
-      </button>
-
       <table>
         <thead>
-          <th>Random Numbers</th>
+          <tr>
+            <th>Index</th>
+            <th>UserId</th>
+            <th>title</th>
+            <th>Actions</th>
+          </tr>
         </thead>
         <tbody>
-          {array.map((ele, ind) => {
+          {data.map((ele, ind) => {
             return (
               <tr key={ind}>
-                <td>{ele}</td>
+                <td>{ind + 1}</td>
+                <td>{ele.userId}</td>
+                <td>{ele.title}</td>
+                <td
+                  onClick={() => {
+                    handleDelete(ind);
+                  }}
+                >
+                  &#x274C;
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <button
-        onClick={() => {
-          setArray([]);
-        }}
-        style={{ display: "block" }}
-      >
-        Clear
-      </button>
     </div>
   );
 }

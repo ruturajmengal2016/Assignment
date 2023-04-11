@@ -1,6 +1,5 @@
 .root{
     display: flex;
-    height: 100vh;
     justify-content: center;
     align-items: center;
     gap: 1rem;
@@ -8,17 +7,15 @@
     table{
         border: 1px solid black;
 
+        thead{
+            position: sticky;
+            top:0;
+            background-color: aquamarine;
+        }
+
         td{
             border: 1px red solid;
             text-align: center;
         }
-    }
-
-    button{
-        box-sizing: border-box;
-        padding: 0.3rem;
-        font-weight: bold;
-        position: relative;
-        top: 0;
     }
 }
