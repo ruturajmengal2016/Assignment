@@ -1,21 +1,71 @@
-.root{
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 100vh;
+  flex-direction: column;
+  background-color: rgb(199, 158, 81);
+
+  .section1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-items: center;
+    border: 1px solid black;
+    box-sizing: border-box;
+    height: 30%;
+    width: 60%;
+
+    form {
+      display: flex;
+      max-width: 30%;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      height: 80%;
+      box-sizing: border-box;
+    }
+
+    .section2 {
+      height: 80%;
+      max-width: 30%;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+
+      span{
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+  .section3 {
+    border: 1px solid yellow;
+    height: 40%;
+    width: 60%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 1rem;
 
-    table{
-        border: 1px solid black;
+    table,td,tr,th {
+      border: 1px solid black;
+      text-align: center;
 
-        thead{
-            position: sticky;
-            top:0;
-            background-color: aquamarine;
-        }
+      td,th{
+        padding: 0.2rem;
+        color: red;
+      }
 
-        td{
-            border: 1px red solid;
-            text-align: center;
-        }
+      .delete,.update{
+        cursor: pointer;
+      }
     }
+  }
 }
