@@ -1,59 +1,63 @@
+import Product from "./Components/Product";
 import Styles from './Styles/App.module.scss'
-import axios from "axios";
-import { useEffect, useState } from "react";
-
-
+import { useRef,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { bill } from "./Selectors/selector";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { _product, com_list } from "./Atoms/atom";
+import { product_list } from "./Atoms/atom";
 export default function App() {
-  const [data, setData] = useState([]);
-  function handleDelete(ind) {
-    const newData = data.filter((ele, index) => {
-      return ind !== index;
-    });
-    setData(newData);
-  }
-  const fetchData = async () => {
-    try {
-      const users = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
-      setData(users.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const amount = useRecoilValue(bill); 
+  const [product, setProduct] = useRecoilState(_product);
+  const [proList, setproList] = useRecoilState(product_list);
+  const [list, setList] = useRecoilState(com_list); 
+  const navigate = useNavigate();
+  const input = useRef()
   return (
     <div className={Styles.root}>
-      <table>
-        <thead>
-          <tr>
-            <th>Index</th>
-            <th>UserId</th>
-            <th>title</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((ele, ind) => {
-            return (
-              <tr key={ind}>
-                <td>{ind + 1}</td>
-                <td>{ele.userId}</td>
-                <td>{ele.title}</td>
-                <td
-                  onClick={() => {
-                    handleDelete(ind);
-                  }}
-                >
-                  &#x274C;
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div  style={{position:"fixed",top:"1rem",left:"1rem"}}>
+        Customer Name:
+        <input type="text" onChange={(e)=>{
+          input.current = e.target.value
+        }}
+       
+         />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "2rem",
+          height: "90%",
+          flex: "1",
+        }}
+      >
+        {list.map((ele, ind) => {
+          return (
+            <div style={{ display: "block" }} key={ind}>
+              {ele}
+            </div>
+          );
+        })}
+      </div>
+      <button
+        onClick={() => {
+          setList([...list, <Product />]);
+          setproList([...proList,product])
+        }}
+      >
+        Add items
+      </button>
+  
+      <button
+        style={{ position: "fixed", bottom: "5px", left: "100px" }}
+        onClick={() => {
+          setproList([...proList,product])
+          navigate("/bill", { state:{amount:amount,name:input.current} });
+        }}
+      >
+        Generate
+      </button>
     </div>
   );
 }
