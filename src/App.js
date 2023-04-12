@@ -1,6 +1,8 @@
 import Styles from './Styles/App.module.scss'
 import axios from "axios";
 import { useEffect, useState } from "react";
+
+
 export default function App() {
   const [data, setData] = useState([]);
   function handleDelete(ind) {
