@@ -1,6 +1,6 @@
 import Product from "./Components/Product";
 import Styles from './Styles/App.module.scss'
-import { useRef,useEffect } from "react";
+import { useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { bill } from "./Selectors/selector";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -13,6 +13,7 @@ export default function App() {
   const [list, setList] = useRecoilState(com_list); 
   const navigate = useNavigate();
   const input = useRef()
+  console.log(proList)
   return (
     <div className={Styles.root}>
       <div  style={{position:"fixed",top:"1rem",left:"1rem"}}>

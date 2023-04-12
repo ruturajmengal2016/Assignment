@@ -11,13 +11,14 @@ export const bill = selector({
   get: ({ get }) => {
     let sum = 0;
     const amount = get(product_list);
-    for (let i = 0; i < amount.length; i++) {
+    for (let i = 1; i < amount.length; i++) {
       for (let j in data) {
         if (amount[i].product === j) {
           sum += Number(data[String(j)] * amount[i].quantity);
         }
       }
     }
+
     return sum;
   },
 });

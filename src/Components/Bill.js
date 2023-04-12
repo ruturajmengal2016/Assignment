@@ -1,6 +1,7 @@
 import { product_list } from "../Atoms/atom";
 import { useRecoilValue } from "recoil";
 import { useLocation } from "react-router-dom";
+import { useMemo } from "react";
 const data = {
   Sugar: "250",
   Honey: "400",
@@ -11,6 +12,13 @@ export default function Bill() {
   const proList = useRecoilValue(product_list);
   const location = useLocation();
   const date = new Date().toLocaleDateString();
+  const initital = useMemo(()=>{
+    let sum = 0
+    for (let i = 1; i < proList.length; i++) {
+        sum += parseInt(proList[i]['quantity'] * data[proList[i]['product']])
+    }
+    return sum
+  })
   return (
     <div
       style={{
@@ -24,7 +32,7 @@ export default function Bill() {
       <h2>Customer Name : {location.state.name}</h2>
       <hr />
       <hr />
-      <table style={{ border: "2px solid black",height:"50%" }}>
+      <table style={{ border: "2px solid black", height: "50%" }}>
         <thead>
           <tr>
             <td colSpan="4" style={{ border: "2px solid black" }}>
@@ -45,7 +53,7 @@ export default function Bill() {
             <th>total</th>
           </tr>
 
-          {proList.slice(1, proList.length).map((ele, ind) => {
+          {proList.slice(1,proList.length).map((ele, ind) => {
             return (
               <tr key={ind}>
                 <td>{ele.product}</td>
@@ -58,7 +66,7 @@ export default function Bill() {
           <td colSpan="3" style={{ textAlign: "left" }}>
             Total
           </td>
-          <td>{location.state.amount}</td>
+          <td>{initital}</td>
         </tbody>
       </table>
     </div>
