@@ -1,9 +1,8 @@
 import "./styles.css";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 
-const reducer = (state, action) => {};
+
 export default function App() {
-  // const [curr, dispatch] = useReducer(reducer, data);
   const [data, setData] = useState([]);
   const [newData, setnewData] = useState([]);
   const fetchData = async () => {
@@ -11,9 +10,11 @@ export default function App() {
     const post = await data.json();
     setData(post);
   };
+
   useEffect(() => {
     fetchData();
   }, []);
+
   const handleChange = (ind) => {
     const value = data.filter((ele, index) => {
       return index === ind;
