@@ -26,6 +26,7 @@ export default function Bill() {
         flexDirection: "column",
         height: "100vh",
         backgroundColor: "orange",
+        padding:"1rem"
       }}
     >
       <h1>Billing Form</h1>
@@ -46,11 +47,11 @@ export default function Bill() {
           </tr>
         </thead>
         <tbody style={{ textAlign: "center" }}>
-          <tr>
+          <tr style={{fontSize:"1.5rem",fontWeight:"bold",color:"blue"}}>
             <th>Item</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>total</th>
+            <th>Total</th>
           </tr>
 
           {proList.slice(1,proList.length).map((ele, ind) => {
@@ -66,7 +67,7 @@ export default function Bill() {
           <td colSpan="3" style={{ textAlign: "left" }}>
             Total
           </td>
-          <td>{initital}</td>
+          <td>&#x20B9; {initital}</td>
         </tbody>
       </table>
     </div>
