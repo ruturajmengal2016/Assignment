@@ -5,6 +5,7 @@ const data = {
   Honey: "400",
   Oats: "300",
   Salt: "10",
+  Tea: "50",
 };
 export const bill = selector({
   key: "bills",
@@ -18,7 +19,6 @@ export const bill = selector({
         }
       }
     }
-
     return sum;
   },
 });

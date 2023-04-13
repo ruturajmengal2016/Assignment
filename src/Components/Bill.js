@@ -1,8 +1,8 @@
 import { product_list } from "../Atoms/atom";
 import { useRecoilValue } from "recoil";
 import { useLocation } from "react-router-dom";
-import { useMemo } from "react"; 
-// import {bill} from '../Selectors/selector'  
+// import { useMemo } from "react";
+import {bill} from '../Selectors/selector' 
 const data = {
   Sugar: "250",
   Honey: "400",
@@ -12,17 +12,17 @@ const data = {
 };
 
 export default function Bill() {
-  const proList = useRecoilValue(product_list); 
-  // const amount = useRecoilValue(bill); 
+  const proList = useRecoilValue(product_list);
+  const amount = useRecoilValue(bill);
   const location = useLocation();
   const date = new Date().toLocaleDateString();
-  const amount = useMemo(() => {
-    let sum = 0;
-    for (let i = 1; i < proList.length; i++) {
-      sum += parseInt(proList[i]["quantity"] * data[proList[i]["product"]]);
-    }
-    return sum;
-  }, [proList]);
+  // const amount = useMemo(() => {
+  //   let sum = 0;
+  //   for (let i = 1; i < proList.length; i++) {
+  //     sum += parseInt(proList[i]["quantity"] * data[proList[i]["product"]]);
+  //   }
+  //   return sum;
+  // }, [proList]);
   return (
     <div
       style={{
@@ -71,7 +71,7 @@ export default function Bill() {
           <td colSpan="3" style={{ textAlign: "left" }}>
             Total
           </td>
-          <td>&#x20B9; {amount}</td>
+          <td>&#x20B9; {amount}</td> 
         </tbody>
       </table>
     </div>
