@@ -1,7 +1,6 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 
-
 export default function App() {
   const [data, setData] = useState([]);
   const [newData, setnewData] = useState([]);
@@ -32,7 +31,7 @@ export default function App() {
                 display: "flex",
                 alignItems: "center",
                 gap: "5px",
-                width: "100%"
+                width: "100%",
               }}
             >
               <div style={{ border: "1px solid black", width: "100%" }}>
@@ -58,13 +57,13 @@ export default function App() {
                 display: "flex",
                 gap: "5px",
                 width: "100%",
-                alignItems: "flex-start"
+                alignItems: "flex-start",
               }}
             >
               <div
                 style={{
                   border: "1px solid black",
-                  width: "100%"
+                  width: "100%",
                 }}
               >
                 {ele.title}
