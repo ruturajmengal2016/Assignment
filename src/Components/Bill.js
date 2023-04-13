@@ -7,18 +7,20 @@ const data = {
   Honey: "400",
   Oats: "300",
   Salt: "10",
+  Tea: "50",
 };
+
 export default function Bill() {
   const proList = useRecoilValue(product_list);
   const location = useLocation();
   const date = new Date().toLocaleDateString();
-  const initital = useMemo(()=>{
-    let sum = 0
+  const initital = useMemo(() => {
+    let sum = 0;
     for (let i = 1; i < proList.length; i++) {
-        sum += parseInt(proList[i]['quantity'] * data[proList[i]['product']])
+      sum += parseInt(proList[i]["quantity"] * data[proList[i]["product"]]);
     }
-    return sum
-  })
+    return sum;
+  }, [proList]);
   return (
     <div
       style={{
@@ -26,7 +28,7 @@ export default function Bill() {
         flexDirection: "column",
         height: "100vh",
         backgroundColor: "orange",
-        padding:"1rem"
+        padding: "1rem",
       }}
     >
       <h1>Billing Form</h1>
@@ -47,14 +49,14 @@ export default function Bill() {
           </tr>
         </thead>
         <tbody style={{ textAlign: "center" }}>
-          <tr style={{fontSize:"1.5rem",fontWeight:"bold",color:"blue"}}>
+          <tr style={{ fontSize: "1.5rem", fontWeight: "bold", color: "blue" }}>
             <th>Item</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Total</th>
           </tr>
 
-          {proList.slice(1,proList.length).map((ele, ind) => {
+          {proList.slice(1, proList.length).map((ele, ind) => {
             return (
               <tr key={ind}>
                 <td>{ele.product}</td>

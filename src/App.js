@@ -2,12 +2,11 @@ import Product from "./Components/Product";
 import Styles from './Styles/App.module.scss'
 import { useRef} from "react";
 import { useNavigate } from "react-router-dom";
-import { bill } from "./Selectors/selector";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState} from "recoil";
 import { _product, com_list } from "./Atoms/atom";
 import { product_list } from "./Atoms/atom";
+
 export default function App() {
-  const amount = useRecoilValue(bill); 
   const [product, setProduct] = useRecoilState(_product);
   const [proList, setproList] = useRecoilState(product_list);
   const [list, setList] = useRecoilState(com_list); 
@@ -58,7 +57,7 @@ export default function App() {
         style={{ position: "fixed", bottom: "5rem", left: "100px",padding:"0.5rem",boxSizing:"border-box",backgroundColor:"green",color:"white",fontWeight:"bold" }}
         onClick={() => {
           setproList([...proList,product])
-          navigate("/bill", { state:{amount:amount,name:input.current} });
+          navigate("/bill", { state:{name:input.current} });
         }}
       >
         Generate

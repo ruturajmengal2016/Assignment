@@ -29,7 +29,8 @@ export default function Product() {
           <option value="Sugar">Sugar</option>
           <option value="Honey">Honey</option>
           <option value="Oats">Oats</option>
-          <option value="Salt">Salt</option>
+          <option value="Salt">Salt</option> 
+          <option value="Tea">Tea</option> 
         </select>
       </div>
       <div
