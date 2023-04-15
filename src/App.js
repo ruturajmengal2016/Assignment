@@ -1,38 +1,46 @@
-import React from "react";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-  Route,
-  Outlet,
-} from "react-router-dom";
-import Navigation from "./Components/Navigation";
-import Home from "./Components/Home";
-import Contact from "./Components/Contact";
-import Style from './App.module.scss'
+import React, { useState } from "react";
+import Style from "./App.module.scss";
+import Card from "./Components/Card";
 const App = () => {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route
-        path="/"
-        element={
-          <>
-            <Navigation />
-            <div className={Style.outlet}
-            >
-              <Outlet />
-            </div>
-          </>
-        }
-      >
-        <Route index element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-      </Route>
-    )
-  );
+  const [data, setData] = useState({ title: "", text: "" });
   return (
     <div className={Style.root}>
-      <RouterProvider router={router} />
+      <div className={Style.first}>
+        <div>hello</div>
+      </div>
+      <div className={Style.second}>
+        <div className={Style.child1}>World</div>
+        <div className={Style.child2}>
+          <Card
+            title="Complete My Assignment"
+            text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, rerum? Optio cupiditate quis molestiae voluptatum magni dolorum reprehenderit numquam tempora."
+          />
+          <Card
+            title="Complete My Assignment"
+            text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, rerum? Optio cupiditate quis molestiae voluptatum magni dolorum reprehenderit numquam tempora."
+          />
+          <Card
+            title="Complete My Assignment"
+            text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, rerum? Optio cupiditate quis molestiae voluptatum magni dolorum reprehenderit numquam tempora."
+          />
+          <Card
+            title="Complete My Assignment"
+            text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, rerum? Optio cupiditate quis molestiae voluptatum magni dolorum reprehenderit numquam tempora."
+          />
+          <Card
+            title="Complete My Assignment"
+            text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, rerum? Optio cupiditate quis molestiae voluptatum magni dolorum reprehenderit numquam tempora."
+          />
+          <Card
+            title="Complete My Assignment"
+            text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, rerum? Optio cupiditate quis molestiae voluptatum magni dolorum reprehenderit numquam tempora."
+          />
+          <Card
+            title="Complete My Assignment"
+            text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, rerum? Optio cupiditate quis molestiae voluptatum magni dolorum reprehenderit numquam tempora."
+          />
+        </div>
+      </div>
     </div>
   );
 };
