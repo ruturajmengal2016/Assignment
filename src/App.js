@@ -1,47 +1,53 @@
 import React, { useState } from "react";
+import { addTodo, removeTask } from "./redux/todoReducer";
+import { useDispatch, useSelector } from "react-redux";
 import Style from "./App.module.scss";
-import Card from "./Components/Card";
-import ControlPointIcon from "@mui/icons-material/ControlPoint";
-import { createContext } from "react";
-export const UserCard = createContext();
 const App = () => {
-  const [data, setData] = useState({
-    title: "Complete My Assignment",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, rerum? Optio cupiditate quis molestiae voluptatum magni dolorum reprehenderit numquam tempora.",
-  });
-  const [card, setCard] = useState([]);
+  const [task, setTask] = useState("");
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state.todo.value.task);
   return (
-    <UserCard.Provider value={{ card, setCard}}>
-      <div className={Style.root}>
-        <div className={Style.first}>
-          <div
+    <div className={Style.root}>
+      <h1>React-Redux Todo App</h1>
+      <div className={Style.box}>
+        <div>
+          <input
+            placeholder="Add task..."
+            name="task"
+            type="text"
+            value={task}
+            onChange={(e) => {
+              setTask(e.target.value);
+            }}
+          />
+          &nbsp;
+          <button
             onClick={() => {
+              dispatch(addTodo({ task: task }));
+              setTask("");
             }}
           >
-          </div>
+            Add
+          </button>
         </div>
-        <div className={Style.second}>
-          <div className={Style.child1}>
-            <abbr title="Add New Note">
-              <ControlPointIcon
-                sx={{ fontSize: "3rem", color: "white" }}
-                onClick={() => {
-                  setCard([
-                    ...card,
-                    <Card title={data.title} text={data.text} />,
-                  ]);
-                }}
-              />
-            </abbr>
-          </div>
-          <div className={Style.child2}>
-            {card.map((ele, ind) => {
-              return ele;
-            })}
-          </div>
+        <div className={Style.list}>
+          {selector.map((ele, ind) => {
+            return (
+              <div key={ind} className={Style.task}>
+                <span>{ele.task}</span>
+                <button
+                  onClick={() => {
+                    dispatch(removeTask({ task: ind }));
+                  }}
+                >
+                  ❌
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
-    </UserCard.Provider>
+    </div>
   );
 };
 
