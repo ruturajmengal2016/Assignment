@@ -60,7 +60,7 @@ const App = () => {
                     );
                   }}
                 >
-                  👍
+                  {selector[ind].complete ? `👎` : `👍`}
                 </button>
               </div>
             );
