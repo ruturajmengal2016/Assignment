@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { addTodo, removeTask } from "./redux/todoReducer";
+import { addTodo, removeTask, complete } from "./redux/todoReducer";
 import { useDispatch, useSelector } from "react-redux";
 import Style from "./App.module.scss";
 const App = () => {
-  const [task, setTask] = useState("");
+  const [task, setTask] = useState({ task: "", complete: false });
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.todo.value.task);
   return (
@@ -15,16 +15,16 @@ const App = () => {
             placeholder="Add task..."
             name="task"
             type="text"
-            value={task}
+            value={task.task}
             onChange={(e) => {
-              setTask(e.target.value);
+              setTask({ ...task, task: e.target.value });
             }}
           />
           &nbsp;
           <button
             onClick={() => {
-              dispatch(addTodo({ task: task }));
-              setTask("");
+              dispatch(addTodo({ task: task.task }));
+              setTask({ task: "" });
             }}
           >
             Add
@@ -34,13 +34,33 @@ const App = () => {
           {selector.map((ele, ind) => {
             return (
               <div key={ind} className={Style.task}>
-                <span>{ele.task}</span>
+                <span
+                  style={{
+                    textDecoration: selector[ind].complete
+                      ? "line-through"
+                      : "none",
+                  }}
+                >
+                  {ele.task}
+                </span>
                 <button
                   onClick={() => {
                     dispatch(removeTask({ task: ind }));
                   }}
                 >
                   ❌
+                </button>
+                <button
+                  onClick={() => {
+                    dispatch(
+                      complete({
+                        task: ind,
+                        complete: true,
+                      })
+                    );
+                  }}
+                >
+                  👍
                 </button>
               </div>
             );
