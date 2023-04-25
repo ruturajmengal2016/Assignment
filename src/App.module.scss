@@ -5,8 +5,19 @@
   align-items: center;
   flex-direction: column;
 
-  .buttons{
+  .buttons {
     display: flex;
     gap: 1rem;
+  }
+  table {
+    margin-top: 5rem;
+    height: 5vh;
+    width: 80vw;
+  }
+  table,
+  td,
+  th {
+    border: 1px solid black;
+    text-align: center;
   }
 }

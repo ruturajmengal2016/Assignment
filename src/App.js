@@ -6,7 +6,38 @@ import { useDispatch, useSelector } from "react-redux";
 const App = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.increase);
-  const array = ["A", "B", "C", "D", "E", "F", "G"];
+  const array = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    "A1",
+    "B1",
+    "C1",
+    "D1",
+  ];
   return (
     <div className={Style.root}>
       <div className={Style.buttons}>
@@ -26,24 +57,16 @@ const App = () => {
         <table>
           <thead>
             <tr>
-              <th>A</th>
-              <th>B</th>
-              <th>C</th>
-              <th>D</th>
-              <th>E</th>
-              <th>F</th>
-              <th>G</th>
+              {array.map((ele, ind) => {
+                return <th key={ind}>{ele}</th>;
+              })}
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{selector.A}</td>
-              <td>{selector.B}</td>
-              <td>{selector.C}</td>
-              <td>{selector.D}</td>
-              <td>{selector.E}</td>
-              <td>{selector.F}</td>
-              <td>{selector.G}</td>
+              {array.map((ele, ind) => {
+                return <td key={ind}>{selector[ele]}</td>;
+              })}
             </tr>
           </tbody>
         </table>
