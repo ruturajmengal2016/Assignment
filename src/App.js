@@ -11,6 +11,7 @@ const App = () => {
       <h1>React-Redux Todo App</h1>
       <div className={Style.box}>
         <div>
+          <h3>The number of tasks remaining:{selector.length}</h3>
           <input
             placeholder="Add task..."
             name="task"
