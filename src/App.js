@@ -1,72 +1,52 @@
-import React, { useState } from "react";
-import { addTodo, removeTask, complete } from "./redux/todoReducer";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import Button from "./Components/Button";
 import Style from "./App.module.scss";
+import { increaseBtnCount } from "./redux/todoReducer";
+import { useDispatch, useSelector } from "react-redux";
 const App = () => {
-  const [task, setTask] = useState({ task: "", complete: false });
   const dispatch = useDispatch();
-  const selector = useSelector((state) => state.todo.value.task);
+  const selector = useSelector((state) => state.increase);
+  const array = ["A", "B", "C", "D", "E", "F", "G"];
   return (
     <div className={Style.root}>
-      <h1>React-Redux Todo App</h1>
-      <div className={Style.box}>
-        <div>
-          <h3>The number of tasks remaining:{selector.length}</h3>
-          <input
-            placeholder="Add task..."
-            name="task"
-            type="text"
-            value={task.task}
-            onChange={(e) => {
-              setTask({ ...task, task: e.target.value });
-            }}
-          />
-          &nbsp;
-          <button
-            onClick={() => {
-              dispatch(addTodo({ task: task.task }));
-              setTask({ task: "" });
-            }}
-          >
-            Add
-          </button>
-        </div>
-        <div className={Style.list}>
-          {selector.map((ele, ind) => {
-            return (
-              <div key={ind} className={Style.task}>
-                <span
-                  style={{
-                    textDecoration: selector[ind].complete
-                      ? "line-through"
-                      : "none",
-                  }}
-                >
-                  {ele.task}
-                </span>
-                <button
-                  onClick={() => {
-                    dispatch(removeTask({ task: ind }));
-                  }}
-                >
-                  ❌
-                </button>
-                <button
-                  onClick={() => {
-                    dispatch(
-                      complete({
-                        task: ind,
-                        complete: true,
-                      })
-                    );
-                  }}
-                >
-                  {selector[ind].complete ? `👎` : `👍`}
-                </button>
-              </div>
-            );
-          })}
-        </div>
+      <div className={Style.buttons}>
+        {array.map((ele, ind) => {
+          return (
+            <Button
+              key={ind}
+              value={ele}
+              dispatch={dispatch}
+              increaseBtnCount={increaseBtnCount}
+              name={ele}
+            />
+          );
+        })}
+      </div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th>D</th>
+              <th>E</th>
+              <th>F</th>
+              <th>G</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{selector.A}</td>
+              <td>{selector.B}</td>
+              <td>{selector.C}</td>
+              <td>{selector.D}</td>
+              <td>{selector.E}</td>
+              <td>{selector.F}</td>
+              <td>{selector.G}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
