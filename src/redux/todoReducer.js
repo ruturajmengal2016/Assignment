@@ -1,45 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const increaseButtonCount = createSlice({
-  name: "increase",
+export const packageMange = createSlice({
+  name: "npm",
   initialState: {
-    A: 0,
-    B: 0,
-    C: 0,
-    D: 0,
-    E: 0,
-    F: 0,
-    G: 0,
-    H: 0,
-    I: 0,
-    J: 0,
-    K: 0,
-    L: 0,
-    M: 0,
-    N: 0,
-    O: 0,
-    P: 0,
-    Q: 0,
-    R: 0,
-    S: 0,
-    T: 0,
-    U: 0,
-    V: 0,
-    W: 0,
-    X: 0,
-    Y: 0,
-    Z: 0,
-    A1:0,
-    B1:0,
-    C1:0,
-    D1:0,
-
+    data: [],
+    favourites: [],
   },
   reducers: {
-    increaseBtnCount: (state, action) => {
-      state[action.payload.name] += 1;
+    addData: (state, action) => {
+      if (action.payload.package !== "") {
+        if (action.type === "favourite") {
+          state.favourites.unshift(action.payload.package);
+        } else {
+          state.data.unshift(action.payload.package);
+        }
+      }
+    },
+    removeItem: (state, action) => {
+      state.data.splice(action.payload.ind, 1);
+      state.favourites.splice(action.payload.ind, 1);
+    },
+    addFavourite: (state, action) => {
+      state.favourites.unshift(state.data[action.payload.ind]);
     },
   },
 });
 
-export const { increaseBtnCount } = increaseButtonCount.actions;
+export const { addData, removeItem,addFavourite } = packageMange.actions;

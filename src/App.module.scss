@@ -1,23 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .root {
-  display: flex;
   height: 100vh;
+  max-height: fit-content;
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 
-  .buttons {
+  .search {
+    height: 80%;
+    width: 80%;
+    border: 5px solid lightblue;
     display: flex;
-    gap: 1rem;
-  }
-  table {
-    margin-top: 5rem;
-    height: 5vh;
-    width: 80vw;
-  }
-  table,
-  td,
-  th {
-    border: 1px solid black;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
   }
 }
