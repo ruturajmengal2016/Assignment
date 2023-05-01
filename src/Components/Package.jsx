@@ -1,7 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addFavourite, removeItem } from "../redux/todoReducer";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
 const Package = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.npm.data);
   return (
@@ -15,6 +19,7 @@ const Package = () => {
     >
       <div
         style={{
+          position: "relative",
           border: "2px solid blue",
           height: "80%",
           width: "80%",
@@ -25,7 +30,10 @@ const Package = () => {
           gap: "1rem",
         }}
       >
-        {selector &&
+        <Typography variant="h4" sx={{ position: "absolute", top: "0" }}>
+          My NPM packages...
+        </Typography>
+        {selector.length ? (
           selector.map((ele, ind) => {
             return (
               <div
@@ -53,9 +61,20 @@ const Package = () => {
                 >
                   ⭐
                 </button>
+               
               </div>
             );
-          })}
+          })
+        ) : (
+          <Button
+            variant="contained"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Add Packages
+          </Button>
+        )}
       </div>
     </div>
   );
