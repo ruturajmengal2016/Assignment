@@ -1,33 +1,32 @@
 import * as React from "react";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import country from "./countries.json";
+import dayjs from "dayjs";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
 
-export default function Tags() {
+export default function ResponsiveDateTimePickers() {
   return (
-    <Stack
-      spacing={3}
-      sx={{
-        display: "flex",
-        height: "100vh",
-        justifyContent: "center",
-      }}
-    >
-      <Autocomplete
-        sx={{ width: "40%", alignSelf: "center" }}
-        multiple
-        id="tags-outlined"
-        options={country}
-        getOptionLabel={(option) => option.country}
-        defaultValue={[country[13]]}
-        filterSelectedOptions
-        renderInput={(params) => (
-          <TextField {...params} label="Country" placeholder="Favorites" />
-        )}
-      />
-    </Stack>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer
+        components={[
+          "DateTimePicker",
+          "MobileDateTimePicker",
+          "DesktopDateTimePicker",
+          "StaticDateTimePicker",
+        ]}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          bgcolor: "lightblue",
+        }}
+      >
+        <DemoItem label="Static variant">
+          <StaticDateTimePicker defaultValue={dayjs("2022-04-17T15:30")} />
+        </DemoItem>
+      </DemoContainer>
+    </LocalizationProvider>
   );
 }
-
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
