@@ -1,32 +1,57 @@
 import * as React from "react";
-import dayjs from "dayjs";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
-
-export default function ResponsiveDateTimePickers() {
+import Box from "@mui/material/Box";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import Typography from "@mui/material/Typography";
+export default function InputAdornments() {
+  const [value, setValue] = React.useState(0);
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer
-        components={[
-          "DateTimePicker",
-          "MobileDateTimePicker",
-          "DesktopDateTimePicker",
-          "StaticDateTimePicker",
-        ]}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          bgcolor: "lightblue",
-        }}
+    <Box
+      sx={{
+        position: "relative",
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "center",
+        height: "100vh",
+        justifyContent: "center",
+      }}
+    >
+      <Typography
+        variant="h2"
+        sx={{ position: "absolute", top: "25%", fontFamily: "revert-layer" }}
       >
-        <DemoItem label="Static variant">
-          <StaticDateTimePicker defaultValue={dayjs("2022-04-17T15:30")} />
-        </DemoItem>
-      </DemoContainer>
-    </LocalizationProvider>
+        pixel to rem conversion
+      </Typography>
+      <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+        <OutlinedInput
+          id="outlined-adornment-weight"
+          endAdornment={<InputAdornment position="end">px</InputAdornment>}
+          aria-describedby="outlined-weight-helper-text"
+          inputProps={{
+            "aria-label": "weight",
+          }}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <FormHelperText id="outlined-weight-helper-text">Pixel</FormHelperText>
+      </FormControl>
+      <DoubleArrowIcon sx={{ marginBottom: "1rem" }} />
+      <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+        <OutlinedInput
+          readOnly
+          id="outlined-adornment-weight"
+          endAdornment={<InputAdornment position="end">rem</InputAdornment>}
+          aria-describedby="outlined-weight-helper-text"
+          inputProps={{
+            "aria-label": "weight",
+          }}
+          value={value / 16}
+        />
+        <FormHelperText id="outlined-weight-helper-text">rem</FormHelperText>
+      </FormControl>
+    </Box>
   );
 }
