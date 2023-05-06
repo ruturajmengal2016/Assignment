@@ -31,7 +31,7 @@ export default function InputAdornments() {
           endAdornment={<InputAdornment position="end">px</InputAdornment>}
           aria-describedby="outlined-weight-helper-text"
           inputProps={{
-            "aria-label": "weight",
+            "aria-label": "pixel",
           }}
           value={value}
           onChange={(e) => setValue(e.target.value)}
@@ -46,7 +46,7 @@ export default function InputAdornments() {
           endAdornment={<InputAdornment position="end">rem</InputAdornment>}
           aria-describedby="outlined-weight-helper-text"
           inputProps={{
-            "aria-label": "weight",
+            "aria-label": "rem",
           }}
           value={value / 16}
         />
