@@ -7,7 +7,7 @@ import { TextField } from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
 import IconButton from "@mui/material/IconButton";
 import TextFormatIcon from "@mui/icons-material/TextFormat";
-const socket = io("http://localhost:3001");
+const socket = io("https://server-fgm1.onrender.com");
 const App = () => {
   const [answer, setAnswer] = React.useState();
   const [change, setChange] = React.useState(true);
@@ -52,8 +52,8 @@ const App = () => {
           display: "flex",
           flexDirection: "column",
           bgcolor: "lightcoral",
-          width: 500,
-          height: 500,
+          width: "80%",
+          height: "80%",
           maxHeight: "fit-content",
         }}
       >
