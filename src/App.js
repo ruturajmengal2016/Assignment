@@ -1,137 +1,179 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import SendIcon from "@mui/icons-material/Send";
-import Button from "@mui/material/Button";
+import Chat from "./components/Chat";
 import io from "socket.io-client";
-import { TextField } from "@mui/material";
-import ImageIcon from "@mui/icons-material/Image";
-import IconButton from "@mui/material/IconButton";
-import TextFormatIcon from "@mui/icons-material/TextFormat";
-const socket = io("https://server-fgm1.onrender.com");
+import SendIcon from "@mui/icons-material/Send";
+import { Button, TextField, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import Avatar from "@mui/material/Avatar";
+let socket;
 const App = () => {
-  const [answer, setAnswer] = React.useState();
-  const [change, setChange] = React.useState(true);
+  const { Name } = useSelector((state) => state.connection.value);
+  const [myId, setId] = React.useState("");
+  const [answer, setAnswer] = React.useState("");
   const [messages, setMessages] = React.useState([]);
-  const name = React.useMemo(() => {
-    return prompt("Enter your name");
-  }, []);
-  function handleSubmit() {
-    if (typeof answer === "object") {
-      const reader = new FileReader();
-      reader.readAsDataURL(answer);
-      reader.addEventListener(
-        "load",
-        (e) => {
-          const data = e.target.result;
-          socket.emit("send message", { data: data, name: name });
-        },
-        true
-      );
+  const [newUsers, setNewUsers] = React.useState([Name]);
+  const send = () => {
+    if (answer) {
+      socket.emit("message", { id: myId, message: answer });
+      setAnswer("");
     } else {
-      socket.emit("send message", { data: answer, name: name });
+      return -1;
     }
-  }
+  };
   React.useEffect(() => {
-    socket.on("message", (data) => {
+    socket = io("http://localhost:3000/");
+    socket.on("connect", () => {
+      setId(socket.id);
+    });
+    socket.emit("join", Name);
+    socket.on("left", (data) => {
+      console.log(data);
+    });
+    return () => {
+      socket.off();
+    };
+  }, [Name]);
+
+  React.useEffect(() => {
+    socket.on("left", (data) => {
       setMessages([...messages, data]);
     });
-  }, [socket]);
+    socket.on("Hello", (data) => {
+      setMessages([...messages, data]);
+      setNewUsers([...newUsers, data.user]);
+    });
+    socket.on("send", (data) => {
+      setMessages([...messages, data]);
+    });
+  }, [messages]);
   return (
     <Box
-      component="div"
       sx={{
         display: "flex",
-        height: "100vh",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "column",
+        height: "100vh",
       }}
     >
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          bgcolor: "lightcoral",
-          width: "80%",
           height: "80%",
-          maxHeight: "fit-content",
+          width: "80%",
+          display: "flex",
         }}
       >
         <Box
-          component="div"
-          height="90%"
-          width="100%"
-          sx={{ bgcolor: "#f44336", overflowY: "auto", padding: "0.5rem 0rem" }}
+          sx={{
+            border: "1px solid black",
+            height: "100%",
+            width: "25%",
+            display: { xs: "none", sm: "flex" },
+            justifyContent: "flex-start",
+            flexDirection: "column",
+            gap: "1rem",
+            overflowY: "auto",
+            boxSizing: "border-box",
+          }}
         >
-          {messages.map((ele, ind) => {
-            return <ChatBox answer={ele.data} key={ind} name={ele.name} />;
-          })}
-        </Box>
-        <Box height="10%" width="100%" sx={{ display: "flex" }}>
-          <IconButton
-            onClick={() => {
-              setChange(!change);
+          <Typography
+            component="div"
+            variant="h5"
+            sx={{
+              position: "sticky",
+              top: 0,
+              zIndex: 1,
+              textAlign: "center",
+              backgroundColor: "white",
             }}
           >
-            {change ? <TextFormatIcon /> : <ImageIcon />}
-          </IconButton>
-          {change ? (
+            New Connections
+          </Typography>
+          {newUsers.map((ele, ind) => {
+            return (
+              <Box
+                component="div"
+                sx={{
+                  boxSizing: "border-box",
+                  padding: "0.5rem",
+                  backgroundColor: "lightcoral",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem",
+                }}
+                key={ind}
+              >
+                <Avatar
+                  alt="Remy Sharp"
+                  sx={{
+                    bgcolor: "lightseagreen",
+                  }}
+                >
+                  {ele[0]}
+                </Avatar>
+                <Typography variant="h6">{ele}</Typography>
+              </Box>
+            );
+          })}
+        </Box>
+        <Box
+          sx={{
+            border: "1px solid blue",
+            height: "100%",
+            width: { xs: "100%", sm: "75%" },
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Chat messages={messages} />
+          <Box
+            sx={{
+              height: "10%",
+              width: "100%",
+              display: "flex",
+            }}
+          >
             <TextField
-              name="userName"
-              variant="outlined"
-              type="file"
-              sx={{ width: "85%" }}
-              onChange={(e) => {
-                setAnswer(e.target.files[0]);
-              }}
-            />
-          ) : (
-            <TextField
-              name="userName"
-              variant="outlined"
               type="text"
-              sx={{ width: "85%" }}
+              value={answer}
+              placeholder="Enter your message..."
+              sx={{
+                width: "90%",
+                "& fieldset": {
+                  border: "none",
+                },
+              }}
               onChange={(e) => {
                 setAnswer(e.target.value);
               }}
             />
-          )}
-
-          <Button
-            variant="contained"
-            sx={{ width: "15%" }}
-            onClick={() => {
-              setMessages([...messages, answer]);
-              handleSubmit();
-            }}
-          >
-            <SendIcon />
-          </Button>
+            <Button
+              variant="contained"
+              onClick={send}
+              sx={{
+                width: "10%",
+                backgroundColor: "red",
+                "&:hover": {
+                  backgroundColor: "green",
+                },
+              }}
+            >
+              <SendIcon
+                sx={{
+                  rotate: "180deg",
+                  "&:hover": {
+                    rotate: "0deg",
+                    transitionDuration: "1s",
+                    transitionTimingFunction: "ease-in",
+                  },
+                }}
+              />
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Box>
   );
 };
-function ChatBox({ answer, name }) {
-  return (
-    <Box
-      component="div"
-      width="50%"
-      sx={{
-        bgcolor: "lightblue",
-        minHeight: "2rem",
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "1rem",
-        borderRadius: "0.5rem",
-        padding: "0.75rem",
-        textAlign: "start",
-      }}
-    >
-      <span>{name}</span>
-      <span>{answer}</span>
-    </Box>
-  );
-}
 
 export default App;
