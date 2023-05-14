@@ -22,7 +22,7 @@ const App = () => {
     }
   };
   React.useEffect(() => {
-    socket = io("http://localhost:3000/");
+    socket = io("https://server-x509.onrender.com");
     socket.on("connect", () => {
       setId(socket.id);
     });
