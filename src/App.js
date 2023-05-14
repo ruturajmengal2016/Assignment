@@ -35,7 +35,7 @@ const App = () => {
     socket.on("message", (data) => {
       setMessages([...messages, data]);
     });
-  }, [messages]);
+  }, [socket]);
   return (
     <Box
       component="div"
@@ -100,7 +100,10 @@ const App = () => {
           <Button
             variant="contained"
             sx={{ width: "15%" }}
-            onClick={handleSubmit}
+            onClick={() => {
+              setMessages([...messages, answer]);
+              handleSubmit();
+            }}
           >
             <SendIcon />
           </Button>
@@ -126,7 +129,7 @@ function ChatBox({ answer, name }) {
       }}
     >
       <span>{name}</span>
-      {answer.length > 1000 ? <img src={answer} alt="photos" /> : answer}
+      <span>{answer}</span>
     </Box>
   );
 }
