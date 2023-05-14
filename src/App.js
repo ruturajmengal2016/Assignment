@@ -27,9 +27,6 @@ const App = () => {
       setId(socket.id);
     });
     socket.emit("join", Name);
-    socket.on("left", (data) => {
-      console.log(data);
-    });
     return () => {
       socket.off();
     };
@@ -74,6 +71,8 @@ const App = () => {
             gap: "1rem",
             overflowY: "auto",
             boxSizing: "border-box",
+            background: `rgb(34,43,195)`,
+            background: `linear-gradient(7deg, rgba(34,43,195,0.768032212885154) 40%, rgba(224,18,53,0) 100%)`,
           }}
         >
           <Typography
@@ -158,16 +157,7 @@ const App = () => {
                 },
               }}
             >
-              <SendIcon
-                sx={{
-                  rotate: "180deg",
-                  "&:hover": {
-                    rotate: "0deg",
-                    transitionDuration: "1s",
-                    transitionTimingFunction: "ease-in",
-                  },
-                }}
-              />
+              <SendIcon />
             </Button>
           </Box>
         </Box>
