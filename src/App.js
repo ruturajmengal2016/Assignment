@@ -34,6 +34,12 @@ const App = () => {
 
   React.useEffect(() => {
     socket.on("left", (data) => {
+      newUsers.splice(
+        newUsers.findIndex((ele) => {
+          return ele.user === data.user;
+        }),
+        1
+      );
       setMessages([...messages, data]);
     });
     socket.on("Hello", (data) => {
