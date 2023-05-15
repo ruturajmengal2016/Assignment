@@ -151,6 +151,11 @@ const App = () => {
               onChange={(e) => {
                 setAnswer(e.target.value);
               }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  send();
+                }
+              }}
             />
             <Button
               variant="contained"
