@@ -1,17 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Hi from "../Hi.jpg";
 import { Message } from "./Message";
 const Chat = ({ messages }) => {
-  const ref = React.useRef();
-  React.useEffect(() => {
-    ref.current?.scrollIntoView();
-  }, [messages]);
+  
   return (
     <Box
-      ref={ref}
+      component="div"
       sx={{
-        backgroundColor: "blue",
         height: "90%",
         width: "100%",
         backgroundImage: `url(${Hi})`,

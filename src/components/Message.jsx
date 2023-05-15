@@ -1,10 +1,18 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 export const Message = ({ answer, person }) => {
   const You = useSelector((state) => state.connection.value.Name);
+  const refe = React.useRef();
+  React.useEffect(() => {
+    refe.current.scrollIntoView(true);
+  }, [answer]);
+
   return (
     <Box
+      ref={refe}
       sx={{
+        scrollBehavior: "smooth",
         boxSizing: "border-box",
         padding: "0.5rem",
         borderRadius: "0.5rem",
