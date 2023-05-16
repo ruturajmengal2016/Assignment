@@ -1,77 +1,71 @@
-import "./styles.css";
-import { useEffect, useState } from "react";
-
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { useSelector, useDispatch } from "react-redux";
+import Question from "./components/Question";
+import Options from "./components/Options";
+import Button from "@mui/material/Button";
+import { setAnswers } from "./Redux/slice";
 export default function App() {
-  const [data, setData] = useState([]);
-  const [newData, setnewData] = useState([]);
-  const fetchData = async () => {
-    const data = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const post = await data.json();
-    setData(post);
+  const [answer, setAnswer] = React.useState(0);
+  const [marks, setMarks] = React.useState(0);
+  const value = useSelector((state) => state.question.value);
+  const [next, setNext] = React.useState(0);
+  const dispatch = useDispatch();
+  const handleAnswer = () => {
+    dispatch(setAnswers({ answer: answer }));
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const handleChange = (ind) => {
-    const value = data.filter((ele, index) => {
-      return index === ind;
-    });
-    setnewData([...newData, value[0]]);
+  const setHandleAnswer = (event) => {
+    setAnswer(event.target.value);
   };
   return (
-    <div className="App">
-      <div className="first">
-        {data.map((ele, ind) => {
-          return (
-            <div
-              key={ind}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "5px",
-                width: "100%",
-              }}
-            >
-              <div style={{ border: "1px solid black", width: "100%" }}>
-                {ele.title}
-              </div>
-              <button
-                onClick={() => {
-                  handleChange(ind);
-                }}
-              >
-                ➕
-              </button>
-            </div>
-          );
-        })}
-      </div>
-      <div className="second">
-        {newData.map((ele, ind) => {
-          return (
-            <div
-              key={ind}
-              style={{
-                display: "flex",
-                gap: "5px",
-                width: "100%",
-                alignItems: "flex-start",
-              }}
-            >
-              <div
-                style={{
-                  border: "1px solid black",
-                  width: "100%",
-                }}
-              >
-                {ele.title}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <Box
+      sx={{
+        height: "100vh",
+        display: {
+          xs: "none",
+          sm: "flex",
+        },
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Box
+        sx={{
+          height: 500,
+          width: 500,
+          boxSizing: "border-box",
+          padding: "1rem",
+          backgroundColor: "lightblue",
+          display: {
+            xs: "none",
+            sm: "flex",
+          },
+          flexDirection: "column",
+        }}
+      >
+        <Question question={value[next].question} />
+        <Options
+          options={value[next].options}
+          question={value[next].question}
+          setHandleAnswer={setHandleAnswer}
+        />
+        <Button
+          variant="contained"
+          onClick={() => {
+            if (value[next].answer == answer) setMarks(marks + 5);
+            if (next < value.length - 1) {
+              setNext(next + 1);
+            } else {
+              alert(`Your Total Marks are ${marks}`);
+              setNext(0);
+              setMarks(0);
+            }
+            handleAnswer();
+          }}
+        >
+          {next < value.length - 1 ? "Next" : "Submit"}
+        </Button>
+      </Box>
+    </Box>
   );
 }
